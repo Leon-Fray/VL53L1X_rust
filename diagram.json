@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "author": "Antigravity",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-pi-pico-w", "id": "pico", "top": 0, "left": 0, "attrs": {} },
+    { "type": "chip-vl53l1x", "id": "sensor", "top": 100, "left": 150, "attrs": {} }
+  ],
+  "connections": [
+    [ "$serialMonitor:RX", "pico:GP0", "yellow", [ "v0" ] ],
+    [ "$serialMonitor:TX", "pico:GP1", "yellow", [ "v0" ] ],
+    [ "pico:GP4", "sensor:SDA", "green", [ "v0" ] ],
+    [ "pico:GP5", "sensor:SCL", "blue", [ "v0" ] ],
+    [ "pico:3V3", "sensor:VCC", "red", [ "v0" ] ],
+    [ "pico:GND.1", "sensor:GND", "black", [ "v0" ] ]
+  ],
+  "dependencies": {
+    "chip-vl53l1x": "chip:vl53l1x@0.0.1"
+  },
+  "serialMonitor": {
+    "display": "always"
+  }
+}

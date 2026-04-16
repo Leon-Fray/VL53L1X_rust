@@ -1,0 +1,21 @@
+{
+  "name": "chip-vl53l1x",
+  "author": "Antigravity",
+  "pins": [
+    "VCC",
+    "GND",
+    "SDA",
+    "SCL"
+  ],
+  "controls": [
+    {
+      "id": "distance",
+      "type": "range",
+      "min": 0,
+      "max": 4000,
+      "value": 100,
+      "step": 1,
+      "label": "Distance (mm)"
+    }
+  ]
+}

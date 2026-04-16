@@ -1,0 +1,54 @@
+[package]
+name = "vl53l1x"
+version = "0.1.0"
+edition = "2021"
+authors = ["Adom Industries Engineering <eng@adomindustries.com>"]
+description = "Production-grade async no_std driver for the STMicroelectronics VL53L1X Time-of-Flight sensor"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/adom-industries/vl53l1x-rs"
+keywords = ["embedded", "driver", "i2c", "tof", "no_std"]
+categories = ["embedded", "no-std", "hardware-support"]
+readme = "README.md"
+
+[features]
+default = []
+defmt = ["dep:defmt"]
+
+[dependencies]
+# Async I2C trait (no_std)
+embedded-hal-async = "1.0"
+
+# Embassy time for deterministic delays and timeouts (hardware-agnostic)
+embassy-time = { version = "0.3" }
+
+# Optional zero-cost structured logging
+defmt = { version = "0.3", optional = true }
+
+[dev-dependencies]
+defmt = "0.3"
+cortex-m-rt = "0.7.5"
+cortex-m = "0.7.7"
+defmt-rtt = "1.1.0"
+panic-probe = "1.0.0"
+embassy-rp = { version = "0.2", features = ["defmt", "time-driver", "critical-section-impl", "intrinsics"] }
+embassy-executor = { version = "0.5", features = ["task-arena-size-32768", "arch-cortex-m", "executor-thread", "defmt", "integrated-timers"] }
+# Also add embedded-hal to dev for anything blocking if needed
+embedded-hal = "1.0"
+
+[target.'cfg(not(target_os = "none"))'.dev-dependencies]
+# Mock HAL for software-only unit tests (runs on host with std)
+embedded-hal-mock = { version = "0.11", features = ["eh1"] }
+tokio = { version = "1", features = ["rt", "macros", "time"] }
+
+[profile.dev]
+codegen-units = 1
+debug = true
+opt-level = "s"
+panic = "abort"
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = "s"
+debug = false
+panic = "abort"

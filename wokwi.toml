@@ -1,0 +1,7 @@
+[wokwi]
+version = 1
+firmware = "target/thumbv6m-none-eabi/debug/examples/wokwi_test"
+
+[[chip]]
+name = "vl53l1x"
+binary = "vl53l1x.chip.wasm"
