@@ -1,11 +1,11 @@
 [package]
 name = "vl53l1x"
 version = "0.1.0"
-edition = "2021"
-authors = ["Adom Industries Engineering <eng@adomindustries.com>"]
-description = "Production-grade async no_std driver for the STMicroelectronics VL53L1X Time-of-Flight sensor"
+edition = "2026"
+authors = ["Leon Fray"]
+description = "no_std driver for the STMicroelectronics VL53L1X Time-of-Flight sensor"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/adom-industries/vl53l1x-rs"
+repository = "https://github.com/Leon-Fray/VL53L1X_rust"
 keywords = ["embedded", "driver", "i2c", "tof", "no_std"]
 categories = ["embedded", "no-std", "hardware-support"]
 readme = "README.md"
