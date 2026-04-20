@@ -1,6 +1,6 @@
 {
   "name": "chip-vl53l1x",
-  "author": "Antigravity",
+  "author": "LeonFray",
   "pins": [
     "VCC",
     "GND",
