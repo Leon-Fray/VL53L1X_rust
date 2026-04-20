@@ -4,7 +4,7 @@
 // (MSB first), then data bytes.  All reads use write_read() which sends the
 // address in a WRITE phase and then switches to a READ phase via repeated-START.
 //
-// Key bugs fixed:
+//  bugs fixed:
 //   1. on_i2c_connect resets addr_state only on STOP, not on START, so the
 //      register address set during the WRITE phase survives the repeated-START
 //      into the READ phase.
@@ -96,7 +96,7 @@ static void publish_result(chip_state_t *c) {
 }
 
 // ── Data-ready signalling ─────────────────────────────────────────────────────
-// We use ActiveLow polarity throughout (MUX_CTRL bit4=1 → ActiveLow).
+// ActiveLow polarity throughout (MUX_CTRL bit4=1 → ActiveLow).
 // Driver checks: (TIO & 0x01) == pol_bit.
 //   ActiveLow pol_bit = 0 → data ready when TIO bit0 = 0
 //   ActiveLow pol_bit = 0 → data NOT ready when TIO bit0 = 1
@@ -290,7 +290,7 @@ void chip_init(void) {
 
   // GPIO_HV_MUX__CTRL = 0x11 (bit4=1 → ActiveLow before config patch)
   // The 91-byte config patch overwrites this with 0x01 (bit4=0 → ActiveHigh).
-  // We pre-populate 0x11 so readbacks before the patch return a sane value.
+  // pre-populate 0x11 so readbacks before the patch return a sane value.
   c->regs[REG_GPIO_HV_MUX_CTRL] = 0x11;
 
   // GPIO__TIO_HV_STATUS = 0x00 → not ready (ActiveHigh: bit0=0 = not ready)
